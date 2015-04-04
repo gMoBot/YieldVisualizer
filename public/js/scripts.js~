@@ -1,0 +1,25 @@
+/**
+ * scripts.js
+ *
+ * Garrett S. Coggon
+ * gcoggon@alumni.nd.edu
+ *
+ * Computer Science 50
+ * Final Project		
+ *
+ * Global JavaScript.
+ */
+
+
+var data = [4, 5, 8, 9, 15, 100, 150, 200,];
+
+var x = d3.scale.linear()
+	.domain([0, d3.max(data)])
+	.range([0, 420]);
+d3.select(".chart")
+	.selectAll("div")
+		.data(data)
+	.enter().append("div")
+		.style("width", function(d) {
+		return x(d) + "px";
+		});

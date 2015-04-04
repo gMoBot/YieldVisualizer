@@ -1,0 +1,33 @@
+<?php
+
+    // configuration
+    require("../includes/config.php");
+    
+    // else if user reached page via POST (as by submitting a form via POST)
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        //
+        if (empty($_POST["bname"] || $_POST["btotal"]))
+        {
+            apologize("You must include all block information");
+            return false;
+        }
+
+
+        // calculate yield per acre
+        $byield = $_POST["btotal"] / $_POST["bsize"];
+        
+        
+        // update yield table
+        query("INSERT INTO yield (id, year, btotal, bname, btype, bsize, byielda) VALUES(?, ?, ?, ?, ?, ?, ?)", $_SESSION["id"],  $_POST["year"], $_POST["btotal"], $_POST["bytpe"], $_POST["bsize"], $byield);  
+    
+        // return to portfolio
+        redirect("/");
+    }
+    // if user did not submit form
+    else
+    {
+        // render buy form
+        render("buy_form.php", ["title" => "Buy"]);
+    }
+?>    

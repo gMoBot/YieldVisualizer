@@ -1,0 +1,32 @@
+<?php
+
+    // configuration
+    require("../includes/config.php");
+    
+    // yields
+    $rows = query("SELECT * FROM yrs WHERE id = ?", $_SESSION["id"]);
+
+    // stock positions
+    $positions = [];
+    foreach ($rows as $row)
+    {
+    	$positions[] = [
+            "bname" => $row["bname"],
+		"info" => array(
+	 	"fif" => $row["2015"],
+		"fou" => $row["2014"],
+		"thr" => $row["2013"],
+		"twl" => $row["2012"],
+		"ele" => $row["2011"],
+		"ten" => $row["2010"]
+	)
+	];
+    }
+        //render form
+	// output articles as JSON (pretty-printed for debugging convenience
+    header("Content-type: application/json");
+    print(json_encode($positions, JSON_PRETTY_PRINT));
+	//echo json_encode($positions);
+        //renderg("graph_form.php");
+
+?>   

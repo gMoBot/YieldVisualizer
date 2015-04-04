@@ -1,0 +1,15 @@
+<div>
+    Symbol: <span id='retsymbol'> <?= $stock["symbol"] ?> </span>
+</div>
+<div>
+     Name: <span id='retname'> <?= $stock["name"] ?> </span>
+</div>
+<div>
+    Price: <span id='retprice'> $<?= $retprice ?> </span>
+</div>
+
+<div>
+    <a href="logout.php">Log Out</a>
+</div>
+
+<a href="javascript:history.go(-1);">Back</a>

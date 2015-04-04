@@ -1,0 +1,62 @@
+<!--
+
+index.html
+
+Computer Science 50
+Harvard University
+
+Data visualization for comparing crop yields.
+
+-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html>
+    <head>
+
+        <!-- http://getbootstrap.com/ -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet"/>
+
+        <!-- app's own CSS -->
+        <link href="/css/styles.css" rel="stylesheet"/>
+
+        <!-- http://jquery.com/ -->
+        <script src="/js/jquery-1.11.1.min.js"></script>
+
+        <!-- http://getbootstrap.com/ -->
+        <script src="/js/bootstrap.min.js"></script>
+
+	<!-- d3 visualizations -->
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+        <!-- app's own JavaScript -->
+        <script src="/js/scripts.js"></script>
+	
+        <title>Data</title>
+
+    </head>
+    <body>
+	<div class="chart"></div>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+
+var data = [4, 5, 8, 9, 15, 100, 150, 200,];
+
+var x = d3.scale.linear()
+	.domain([0, d3.max(data)])
+	.range([0, 420]);
+d3.select(".chart")
+	.selectAll("div")
+		.data(data)
+	.enter().append("div")
+		.style("width", function(d) {
+			return x(d) + "px";
+		});
+		.text(function(d) { 
+			return d;
+		});
+	</script>
+   </body>
+</html>
